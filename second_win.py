@@ -1,31 +1,30 @@
-# write a code for the second screen of app
-
-# write a code for the second app
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (
     QApplication, QWidget,
     QHBoxLayout, QVBoxLayout,
     QGroupBox, QRadioButton,
-    QPushButton, QLabel, QListWidget, QLineEdit)
+    QPushButton, QLabel, QListWidget, QLineEdit
+)
 
 from instr import *
 from final_win import *
 
-class TestWin(QWidget):
-    def __init__(self):
-        ''' the window in which the survey is being conducted '''
-        super().__init__()
 
-        # creating and configuring graphic elements:
+class TestWin(QWidget):
+    def _init_(self):
+        ''' Window for conducting the survey '''
+        super()._init_()
+
+        # Create and configure graphic elements
         self.initUI()
 
-        # establishes connections between elements
+        # Establish connections between elements
         self.connects()
 
-        # sets what the window will look like (label, size, location)
+        # Set window appearance (label, size, location)
         self.set_appear()
 
-        # start:
+        # Show the window
         self.show()
 
     def next_click(self):
@@ -35,15 +34,14 @@ class TestWin(QWidget):
     def connects(self):
         self.btn_next.clicked.connect(self.next_click)
 
-        ''' sets what the window will look like (label, size, location) '''
     def set_appear(self):
         self.setWindowTitle(txt_title)
         self.resize(win_width, win_height)
         self.move(win_x, win_y)
 
     def initUI(self):
-        ''' creates graphic elements '''
-        # self.questionnary = AllQuestions()
+        ''' Create graphic elements '''
+
         self.btn_next = QPushButton(txt_sendresults, self)
         self.btn_test1 = QPushButton(txt_starttest1, self)
         self.btn_test2 = QPushButton(txt_starttest2, self)
@@ -57,42 +55,36 @@ class TestWin(QWidget):
         self.text_timer = QLabel(txt_timer)
 
         self.line_name = QLineEdit(txt_hintname)
-
         self.line_age = QLineEdit(txt_hintage)
-
         self.line_test1 = QLineEdit(txt_hinttest1)
-
         self.line_test2 = QLineEdit(txt_hinttest2)
-
         self.line_test3 = QLineEdit(txt_hinttest3)
 
         self.l_line = QVBoxLayout()
         self.r_line = QVBoxLayout()
         self.h_line = QHBoxLayout()
-        self.r_line.addWidget(self.text_timer, alignment = Qt.AlignCenter)
-        self.l_line.addWidget(self.text_name, alignment = Qt.AlignLeft)
-        self.l_line.addWidget(self.line_name, alignment = Qt.AlignLeft)
-        self.l_line.addWidget(self.text_age, alignment = Qt.AlignLeft)
-        self.l_line.addWidget(self.line_age, alignment = Qt.AlignLeft)
-        self.l_line.addWidget(self.text_test1, alignment = Qt.AlignLeft)
-        self.l_line.addWidget(self.btn_test1, alignment = Qt.AlignLeft)
-        self.l_line.addWidget(self.line_test1, alignment = Qt.AlignLeft)
-        self.l_line.addWidget(self.text_test2, alignment = Qt.AlignLeft)
-        self.l_line.addWidget(self.btn_test2, alignment = Qt.AlignLeft)
-        self.l_line.addWidget(self.text_test3, alignment = Qt.AlignLeft)
-        self.l_line.addWidget(self.btn_test3, alignment = Qt.AlignLeft)
-        self.l_line.addWidget(self.line_test2, alignment = Qt.AlignLeft)
-        self.l_line.addWidget(self.line_test3, alignment = Qt.AlignLeft)
-        self.l_line.addWidget(self.btn_next, alignment = Qt.AlignCenter)
+
+        self.r_line.addWidget(self.text_timer, alignment=Qt.AlignCenter)
+
+        self.l_line.addWidget(self.text_name, alignment=Qt.AlignLeft)
+        self.l_line.addWidget(self.line_name, alignment=Qt.AlignLeft)
+        self.l_line.addWidget(self.text_age, alignment=Qt.AlignLeft)
+        self.l_line.addWidget(self.line_age, alignment=Qt.AlignLeft)
+
+        self.l_line.addWidget(self.text_test1, alignment=Qt.AlignLeft)
+        self.l_line.addWidget(self.btn_test1, alignment=Qt.AlignLeft)
+        self.l_line.addWidget(self.line_test1, alignment=Qt.AlignLeft)
+
+        self.l_line.addWidget(self.text_test2, alignment=Qt.AlignLeft)
+        self.l_line.addWidget(self.btn_test2, alignment=Qt.AlignLeft)
+        self.l_line.addWidget(self.line_test2, alignment=Qt.AlignLeft)
+
+        self.l_line.addWidget(self.text_test3, alignment=Qt.AlignLeft)
+        self.l_line.addWidget(self.btn_test3, alignment=Qt.AlignLeft)
+        self.l_line.addWidget(self.line_test3, alignment=Qt.AlignLeft)
+
+        self.l_line.addWidget(self.btn_next, alignment=Qt.AlignCenter)
 
         self.h_line.addLayout(self.l_line)
         self.h_line.addLayout(self.r_line)
-
         self.setLayout(self.h_line)
-
-    def next_click(self):
-        self.hide()
-        self.fw = FinalWin()
-
-    def connects(self):
-        self.btn_next.clicked.connect(self.next_click)
